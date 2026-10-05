@@ -1,0 +1,23 @@
+Design Memo: Waitlist Manager
+
+How does your list work?
+My waitlist is a singly linked list made of Node objects. Each node stores a
+customer's name and a "next" pointer to the node behind it. The last node's next
+is None, which marks the end of the line. add_front creates a node, points it at
+the current first node, and makes it the new head. add_end walks from the head to
+the last node and attaches the new node there. remove walks the list until it
+finds the matching name, then relinks the previous node's next pointer to skip
+over it. print_list follows the next pointers from start to finish, printing each
+name.
+
+What role does the head play?
+The head is the only entry point into the list. Every operation starts there, and
+without it the rest of the nodes would be unreachable. If the head is None, the
+waitlist is empty. Adding to the front or removing the first customer means
+updating the head directly.
+
+When might a real engineer need a custom list like this?
+Engineers use linked structures when items are frequently inserted or removed at
+the front or middle, since no elements need to shift. Examples include task
+queues, undo histories, music playlists, LRU caches, and memory allocators, or
+any situation where they need precise control over how data is linked and stored.
